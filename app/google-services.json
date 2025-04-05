@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "748818453185",
+    "project_id": "softwarecourseproject",
+    "storage_bucket": "softwarecourseproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748818453185:android:f736c475fce6ada50b7a40",
+        "android_client_info": {
+          "package_name": "com.example.garilagbe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9da6qzPcwKDyAo8m_Bte9U85ZvS5cF-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

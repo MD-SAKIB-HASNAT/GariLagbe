@@ -38,8 +38,8 @@ public class LoginTabFragment extends Fragment {
         String user = edtUser.getText().toString().trim();
         String password = edtPass.getText().toString().trim();
 
-        if (user.isEmpty() || password.isEmpty()) {
-            edtUser.setError("Enter valid email");
+        if (user.isEmpty()) {
+            edtUser.setError("Enter valid username");
             return;
         }
 
@@ -48,7 +48,7 @@ public class LoginTabFragment extends Fragment {
             return;
         }
 
-        FirebaseAuth mAuth = null;
+       /* FirebaseAuth mAuth = null;
         mAuth.signInWithEmailAndPassword(user, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -57,7 +57,8 @@ public class LoginTabFragment extends Fragment {
                         Toast.makeText(getContext(), "Login failed: " + task.getException().getMessage(),
                                 Toast.LENGTH_LONG).show();
                     }
-                });
+                });*/
+        Toast.makeText(getContext(), "Successfully Login with: "+user , Toast.LENGTH_SHORT).show();
     }
 
 }

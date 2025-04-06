@@ -17,16 +17,6 @@ public class SignUpTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login_tab, container, false);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        /*signBtn = view.findViewById(R.id.signup_button);
-
-        signBtn.setOnClickListener(v ->{
-            Intent i = new Intent(LoginTabFragment.this, home.class);
-            startActivity(i);
-        });*/
-
-        return view;
+        return inflater.inflate(R.layout.fragment_sign_up_tab, container, false);
     }
 }

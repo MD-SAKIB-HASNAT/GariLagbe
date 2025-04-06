@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpTabFragment extends Fragment {
-    Button signBtn
+    Button signBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

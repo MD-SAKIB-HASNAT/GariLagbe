@@ -1,5 +1,6 @@
 package com.example.garilagbe;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -58,7 +59,9 @@ public class LoginTabFragment extends Fragment {
                                 Toast.LENGTH_LONG).show();
                     }
                 });*/
-        Toast.makeText(getContext(), "Successfully Login with: "+user , Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Successfully Login with: "+user , Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getActivity(), home.class);
+        startActivity(i);
     }
 
 }

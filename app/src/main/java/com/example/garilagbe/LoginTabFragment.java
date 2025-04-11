@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 import java.util.Calendar;
 
 
 public class LoginTabFragment extends Fragment {
-    private EditText edtUser, edtPass;
+    private EditText edtEmail, edtPass;
     private Button loginButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,7 +29,7 @@ public class LoginTabFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login_tab, container, false);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        edtUser = view.findViewById(R.id.login_user);
+        edtEmail = view.findViewById(R.id.login_user);
         edtPass = view.findViewById(R.id.login_password);
         loginButton = view.findViewById(R.id.login_button);
 
@@ -36,32 +38,28 @@ public class LoginTabFragment extends Fragment {
         return view;
     }
     private void handleLogin() {
-        String user = edtUser.getText().toString().trim();
+        String email = edtEmail.getText().toString().trim();
         String password = edtPass.getText().toString().trim();
 
-        if (user.isEmpty()) {
-            edtUser.setError("Enter valid username");
+        if (!isValidEmail(email)) {
+            edtEmail.setError("Invalid email format");
             return;
         }
 
-        if (password.isEmpty() || password.length() < 6) {
-            edtPass.setError("Password must be at least 6 characters");
+        if (!isComplexPassword(password)) {
+            edtPass.setError("Password must be 8+ chars, 1 upper, 1 number, 1 symbol");
             return;
         }
 
-       /* FirebaseAuth mAuth = null;
-        mAuth.signInWithEmailAndPassword(user, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getContext(), "Login failed: " + task.getException().getMessage(),
-                                Toast.LENGTH_LONG).show();
-                    }
-                });*/
-        //Toast.makeText(getContext(), "Successfully Login with: "+user , Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getActivity(), home.class);
         startActivity(i);
+    }
+    private boolean isComplexPassword(String password) {
+        // At least 8 chars, 1 upper, 1 number, 1 special
+        return password.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$");
+    }
+    private boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
 }

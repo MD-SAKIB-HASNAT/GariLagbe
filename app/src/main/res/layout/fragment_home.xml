@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home"
-    android:background="@drawable/bgk"
+    tools:context=".HomeFragment"
+    android:background="@drawable/bkg"
     >
 
     <ImageView

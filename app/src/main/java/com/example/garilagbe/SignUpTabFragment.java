@@ -68,7 +68,7 @@ public class SignUpTabFragment extends Fragment {
         DBcrud valueInsert = new DBcrud(getContext());
         if(valueInsert.userInsert(email,password)!=-1){
             Toast.makeText(getContext(), "Successfully Signing Up", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getContext(),home.class);
+            Intent i = new Intent(getContext(),MainHome.class);
             startActivity(i);
         }
         else{

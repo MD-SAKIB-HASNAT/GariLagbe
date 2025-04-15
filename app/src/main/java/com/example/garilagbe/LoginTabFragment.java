@@ -40,6 +40,8 @@ public class LoginTabFragment extends Fragment {
     private void handleLogin() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPass.getText().toString().trim();
+        Intent i = new Intent(getActivity(), MainHome.class);
+        startActivity(i);
 
         if (!isValidEmail(email)) {
             edtEmail.setError("Invalid email format");
@@ -51,8 +53,7 @@ public class LoginTabFragment extends Fragment {
             return;
         }
 
-        Intent i = new Intent(getActivity(), home.class);
-        startActivity(i);
+
     }
     private boolean isComplexPassword(String password) {
         // At least 8 chars, 1 upper, 1 number, 1 special

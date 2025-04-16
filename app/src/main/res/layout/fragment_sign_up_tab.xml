@@ -9,7 +9,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+
         android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:src="@drawable/car"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SignUp"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="#DE7010"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,19 +36,26 @@
             android:padding="20dp"
             >
 
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                android:src="@drawable/car"
-                android:layout_gravity="center"
-                />
             <EditText
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/edittext_bkg"
+                android:layout_gravity="center"
+                android:id="@+id/signup_name"
+                android:inputType="text"
+                android:padding="8dp"
+                android:hint="Name"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="8dp"
+                />
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
                 android:id="@+id/signup_email"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:inputType="textEmailAddress"
                 android:padding="8dp"
                 android:hint="Email"
@@ -40,12 +64,12 @@
                 />
             <EditText
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
                 android:id="@+id/signup_password"
                 android:inputType="textPassword"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Password"
                 android:drawableLeft="@drawable/pass"
@@ -53,12 +77,12 @@
                 />
             <EditText
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
                 android:id="@+id/signup_confirm_password"
                 android:inputType="textPassword"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Confirm Password"
                 android:drawableLeft="@drawable/pass"
@@ -66,9 +90,9 @@
                 />
             <Button
                 android:layout_width="300dp"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/signup_button"
                 android:text="SignUp"
                 android:textSize="18sp"

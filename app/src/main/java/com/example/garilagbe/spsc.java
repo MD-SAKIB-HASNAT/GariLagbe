@@ -22,8 +22,8 @@ public class spsc extends AppCompatActivity {
             public void run() {
                 super.run();
                 try {
-                    sleep(3000);
-                    Intent i = new Intent(spsc.this, MainActivity.class);
+                    sleep(2000);
+                    Intent i = new Intent(spsc.this, GetStartPage.class);
                     startActivity(i);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

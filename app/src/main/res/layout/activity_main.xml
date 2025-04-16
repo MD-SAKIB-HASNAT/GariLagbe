@@ -12,9 +12,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="TODO"
-        android:src="@drawable/toplogo"
+        android:src="@drawable/redlogo"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

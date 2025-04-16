@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="viewStart"
-            android:text="Create"
+            android:text="Create Post"
             android:padding="8dp"
             android:textColor="@color/lavender"
             android:layout_marginStart="12dp"
@@ -31,14 +31,40 @@
 
         <ImageView
             android:id="@+id/cancelButton"
-            android:layout_width="15dp"
+            android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:layout_marginLeft="250dp"
+            android:layout_marginLeft="200dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/close" />
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/layoutPhoto"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/photo"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload a Photo"
+            android:textColor="@color/lavender"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutVideo"
@@ -49,8 +75,10 @@
         android:padding="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/video"
+            android:layout_marginLeft="20dp"
             />
 
         <TextView
@@ -63,6 +91,7 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/layoutShorts"
         android:orientation="horizontal"
@@ -72,8 +101,10 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/shrt"
+            android:layout_marginLeft="20dp"
             />
 
         <TextView
@@ -98,8 +129,10 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/live"
+            android:layout_marginLeft="20dp"
             />
 
         <TextView

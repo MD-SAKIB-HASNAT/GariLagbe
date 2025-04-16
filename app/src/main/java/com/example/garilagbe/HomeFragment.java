@@ -1,6 +1,7 @@
 package com.example.garilagbe;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -26,6 +27,14 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         CardView btnPost = view.findViewById(R.id.cardbtn_post);
+        CardView btnRent = view.findViewById(R.id.cardbtn_rent);
+
+        btnRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), RentPage.class));
+            }
+        });
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override

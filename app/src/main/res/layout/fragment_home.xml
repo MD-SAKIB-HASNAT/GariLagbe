@@ -116,6 +116,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardbtn_rent"
             android:layout_width="75dp"
             android:layout_height="85dp"
             android:layout_row="0"
@@ -219,6 +220,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+
             android:layout_width="75dp"
             android:layout_height="85dp"
             android:layout_row="1"

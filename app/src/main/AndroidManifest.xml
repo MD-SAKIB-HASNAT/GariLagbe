@@ -15,6 +15,9 @@
         android:theme="@style/Theme.GariLagbe"
         tools:targetApi="31">
         <activity
+            android:name=".RentPage"
+            android:exported="false" />
+        <activity
             android:name=".GetStartPage"
             android:exported="false" />
         <activity

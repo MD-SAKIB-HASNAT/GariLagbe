@@ -6,6 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".GetStartPage">
 
@@ -46,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Explore great deals on cars and bikes, list your vehicle with ease, and connect with reliable buyers and sellers. Our platform makes buying and selling fast, secure, and convenient—right from your phone."
+            android:text="Explore great deals on cars and bikes, list your vehicle with ease, and connect with reliable buyers and sellers. "
             android:textSize="20sp"
             android:layout_gravity="center"
             android:gravity="center"

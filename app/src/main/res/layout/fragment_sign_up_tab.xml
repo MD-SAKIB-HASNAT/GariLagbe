@@ -13,8 +13,8 @@
 
         android:orientation="vertical">
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
             android:src="@drawable/car"
             android:layout_gravity="center"
             />
@@ -32,12 +32,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:padding="20dp"
             >
 
             <EditText
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
@@ -50,12 +50,12 @@
                 />
 
             <EditText
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
                 android:id="@+id/signup_email"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:inputType="textEmailAddress"
                 android:padding="8dp"
                 android:hint="Email"
@@ -63,36 +63,36 @@
                 android:drawablePadding="8dp"
                 />
             <EditText
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
                 android:id="@+id/signup_password"
                 android:inputType="textPassword"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:padding="8dp"
                 android:hint="Password"
                 android:drawableLeft="@drawable/pass"
                 android:drawablePadding="8dp"
                 />
             <EditText
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:background="@drawable/edittext_bkg"
                 android:layout_gravity="center"
                 android:id="@+id/signup_confirm_password"
                 android:inputType="textPassword"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:padding="8dp"
                 android:hint="Confirm Password"
                 android:drawableLeft="@drawable/pass"
                 android:drawablePadding="8dp"
                 />
             <Button
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/signup_button"
                 android:text="SignUp"
                 android:textSize="18sp"

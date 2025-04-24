@@ -5,30 +5,70 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D4EBFF"
     tools:context=".HomeFragment"
-    android:background="@drawable/bkg"
     >
 
-    <ImageView
-        android:id="@+id/bike"
-        android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_alignEnd="@+id/bike"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/coollogo"
-        tools:ignore="NotSibling" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/top_background"
+        android:orientation="vertical">
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bike"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Hello,"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bike"
-        android:layout_marginTop="-2dp"
-        android:background="@drawable/sample"
-        android:padding="16dp"
-        android:text="Buy Your Perfect Gari"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="Buy Your Perfect Gari from here.."
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="-65dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="-65dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/circlelogo"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/gridLayout"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/offer">
+
+    </LinearLayout>
 
     <GridLayout
         android:id="@+id/gridLayout"
@@ -45,7 +85,7 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_marginLeft="20dp"
-            android:background="@color/white"
+            android:background="@color/lavender"
             app:cardCornerRadius="18dp">
 
             <ImageView
@@ -220,7 +260,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-
+            android:id="@+id/btn_setting"
             android:layout_width="75dp"
             android:layout_height="85dp"
             android:layout_row="1"

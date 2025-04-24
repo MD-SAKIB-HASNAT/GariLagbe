@@ -10,20 +10,30 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:elevation="4dp"
         android:background="@color/lavender"/>
-    <TextView
+    <LinearLayout
+        android:id="@+id/back_setting"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="GariBD"
-        android:background="@color/lavender"
-        android:textColor="#FBC84A"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="30sp"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="12dp">
 
+        <ImageView
+            android:src="@drawable/leftaew"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp" />
 
+        <TextView
+            android:text="Back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"

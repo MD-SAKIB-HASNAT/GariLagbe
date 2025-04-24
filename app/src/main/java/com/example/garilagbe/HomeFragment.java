@@ -22,17 +22,26 @@ import android.widget.Toast;
 public class HomeFragment extends Fragment {
 
 
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         CardView btnPost = view.findViewById(R.id.cardbtn_post);
         CardView btnRent = view.findViewById(R.id.cardbtn_rent);
+        CardView btnSetting = view.findViewById(R.id.btn_setting);
+
 
         btnRent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), RentPage.class));
+            }
+        });
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),Settings.class));
             }
         });
 

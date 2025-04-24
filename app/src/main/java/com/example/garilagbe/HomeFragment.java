@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
 
                 dialog.dismiss();
                 Toast.makeText(getContext(), "Upload a Photo is clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), UploadItemActivity.class));
 
             }
         });

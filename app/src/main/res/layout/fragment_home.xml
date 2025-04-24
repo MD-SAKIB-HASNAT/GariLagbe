@@ -234,6 +234,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_support"
             android:layout_width="75dp"
             android:layout_height="85dp"
             android:layout_row="1"

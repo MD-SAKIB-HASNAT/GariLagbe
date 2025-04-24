@@ -28,6 +28,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.credentials.webauthn.Cbor;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -64,6 +65,7 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
 
 
     }
+
     private  void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -71,9 +73,26 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
         fragmentTransaction.commit();
     }
 
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.nav_home) {
+            replaceFragment(new HomeFragment());
+        }else if (itemId == R.id.nav_profile) {
+            replaceFragment(new ProfileFragment());
+        } else if (itemId == R.id.nav_settings) {
+            replaceFragment(new SettingsFragment());
+        } else if (itemId == R.id.nav_share) {
+            replaceFragment(new ShareFragment());
+        } else if (itemId == R.id.nav_about) {
+            replaceFragment(new AboutUsFragment());
+        } else if (itemId == R.id.nav_logout) {
+            Toast.makeText(this, "Logout Successfully!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 

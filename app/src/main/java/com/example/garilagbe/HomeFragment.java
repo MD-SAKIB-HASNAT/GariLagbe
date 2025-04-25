@@ -29,8 +29,16 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         CardView btnPost = view.findViewById(R.id.cardbtn_post);
         CardView btnRent = view.findViewById(R.id.cardbtn_rent);
-        CardView btnSetting = view.findViewById(R.id.btn_setting);
-        CardView btnSupport = view.findViewById(R.id.btn_support);
+        CardView btnSetting = view.findViewById(R.id.cardbtn_setting);
+        CardView btnSupport = view.findViewById(R.id.cardbtn_support);
+        CardView btnCar = view.findViewById(R.id.cardbtn_car);
+
+        btnCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),CarViewActivity.class));
+            }
+        });
 
 
         btnRent.setOnClickListener(new View.OnClickListener() {

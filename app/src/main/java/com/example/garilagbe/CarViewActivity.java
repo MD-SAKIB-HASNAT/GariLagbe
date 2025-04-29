@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -28,6 +29,9 @@ public class CarViewActivity extends AppCompatActivity {
     private final String API_URL = "http://your-api-url.com/api/car-data"; // Change this to actual API endpoint
 */
 
+    RecyclerView carRecyclerView;
+    RecyclerView brandRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,13 @@ public class CarViewActivity extends AppCompatActivity {
                 startActivity(new Intent(CarViewActivity.this, DetailActivity.class));
             }
         });
+
+        CarAdapter carAdapter = new CarAdapter();
+        carRecyclerView = findViewById(R.id.car_recview);
+        carRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        carRecyclerView.setAdapter(carAdapter);
+
+
 
         /*categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
         carRecyclerView = findViewById(R.id.carRecyclerView);

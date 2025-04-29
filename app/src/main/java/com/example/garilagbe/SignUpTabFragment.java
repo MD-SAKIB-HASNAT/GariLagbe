@@ -65,16 +65,6 @@ public class SignUpTabFragment extends Fragment {
             confirmPasswordInput.setError("Passwords do not match");
             return;
         }
-        DBcrud valueInsert = new DBcrud(getContext());
-        if(valueInsert.userInsert(email,password)!=-1){
-            Toast.makeText(getContext(), "Successfully Signing Up", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getContext(),MainHome.class);
-            startActivity(i);
-        }
-        else{
-            Toast.makeText(getContext(), "Failed Signing Up", Toast.LENGTH_SHORT).show();
-        }
-
 
 
         // Send OTP

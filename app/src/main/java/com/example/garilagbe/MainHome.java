@@ -2,6 +2,7 @@ package com.example.garilagbe;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -87,8 +89,10 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
         } else if (itemId == R.id.nav_about) {
             replaceFragment(new AboutUsFragment());
         } else if (itemId == R.id.nav_logout) {
-            Toast.makeText(this, "Logout Successfully!", Toast.LENGTH_SHORT).show();
-            finish();
+            FirebaseAuth.getInstance().signOut(); // Log out
+            Intent intent = new Intent(MainHome.this, MainActivity.class); // Go back to login
+            startActivity(intent);
+            finish(); // Prevent back button from returning here
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -32,12 +32,22 @@ public class LoginTabFragment extends Fragment {
         edtEmail = view.findViewById(R.id.login_user);
         edtPass = view.findViewById(R.id.login_password);
         loginButton = view.findViewById(R.id.login_button);
+        
 
         loginButton.setOnClickListener(v -> handleLogin());
 
         return view;
     }
-
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            // User already signed in, go to MainHome
+            Intent intent = new Intent(getActivity(), MainHome.class);
+            startActivity(intent);
+            getActivity().finish(); // Close current activity
+        }
+    }
     private void handleLogin() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPass.getText().toString().trim();
@@ -76,4 +86,7 @@ public class LoginTabFragment extends Fragment {
     private void showToast(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
+    
+    
+
 }

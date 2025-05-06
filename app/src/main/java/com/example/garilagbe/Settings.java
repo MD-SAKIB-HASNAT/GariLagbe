@@ -13,12 +13,12 @@ public class Settings extends AppCompatActivity {
 
     Switch switchNotification, switchDarkMode;
     LinearLayout layoutRateApp, layoutShareApp, layoutPrivacy, layoutTerms, layoutCookies,
-            layoutFeedback, layoutLogout, layoutBack;
+            layoutFeedback, layoutBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings); // Make sure this matches your XML file name
+        setContentView(R.layout.activity_settings);
 
         // Switches
         switchNotification = findViewById(R.id.switch_notification);
@@ -32,7 +32,7 @@ public class Settings extends AppCompatActivity {
         layoutTerms = findViewById(R.id.layout_terms);
         layoutCookies = findViewById(R.id.layout_cookies);
         layoutFeedback = findViewById(R.id.layout_feedback);
-        layoutLogout = findViewById(R.id.layout_logout);
+
 
         // Switch Listeners
         switchNotification.setOnCheckedChangeListener((buttonView, isChecked) ->
@@ -79,11 +79,6 @@ public class Settings extends AppCompatActivity {
             intent.setData(Uri.parse("mailto:your_email@example.com"));
             intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback for GariBD");
             startActivity(intent);
-        });
-
-        layoutLogout.setOnClickListener(v -> {
-            // Clear session, go to login, or perform Firebase sign out
-            Toast.makeText(this, "Logged out!", Toast.LENGTH_SHORT).show();
         });
     }
 }

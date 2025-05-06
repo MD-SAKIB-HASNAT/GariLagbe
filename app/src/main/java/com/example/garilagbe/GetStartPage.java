@@ -11,6 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class GetStartPage extends AppCompatActivity {
     Button btnStart;
     @Override
@@ -25,5 +28,15 @@ public class GetStartPage extends AppCompatActivity {
                 startActivity(new Intent(GetStartPage.this, MainActivity.class));
             }
         });
+    }
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            // User already signed in, go to MainHome
+            Intent intent = new Intent(GetStartPage.this, MainHome.class);
+            startActivity(intent);
+            finish(); // Close current activity
+        }
     }
 }

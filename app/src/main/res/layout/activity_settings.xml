@@ -224,25 +224,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"/>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/layout_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingVertical="12dp">
 
-            <ImageView
-                android:src="@drawable/logout"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="16dp" />
-
-            <TextView
-                android:text="Logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"/>
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

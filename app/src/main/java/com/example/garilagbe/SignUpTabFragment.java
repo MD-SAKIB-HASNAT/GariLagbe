@@ -1,8 +1,8 @@
 package com.example.garilagbe;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,31 +15,31 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpTabFragment extends Fragment {
 
-    EditText emailInput, passwordInput, confirmPasswordInput;
+    EditText nameInput, emailInput, passwordInput, confirmPasswordInput;
     Button signBtn;
-    String password,email,confirmPassword;
+    String name, email, password, confirmPassword;
+
+    FirebaseAuth mAuth;
+    DatabaseReference dbRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up_tab, container, false);
 
+        nameInput = view.findViewById(R.id.signup_name);
         emailInput = view.findViewById(R.id.signup_email);
         passwordInput = view.findViewById(R.id.signup_password);
         confirmPasswordInput = view.findViewById(R.id.signup_confirm_password);
         signBtn = view.findViewById(R.id.signup_button);
+
+        mAuth = FirebaseAuth.getInstance();
+        dbRef = FirebaseDatabase.getInstance().getReference("users");
 
         signBtn.setOnClickListener(v -> handleSignUp());
 
@@ -47,9 +47,15 @@ public class SignUpTabFragment extends Fragment {
     }
 
     private void handleSignUp() {
-         email = emailInput.getText().toString().trim();
-         password = passwordInput.getText().toString().trim();
-         confirmPassword = confirmPasswordInput.getText().toString().trim();
+        name = nameInput.getText().toString().trim();
+        email = emailInput.getText().toString().trim();
+        password = passwordInput.getText().toString().trim();
+        confirmPassword = confirmPasswordInput.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name)) {
+            nameInput.setError("Name is required");
+            return;
+        }
 
         if (!isValidEmail(email)) {
             emailInput.setError("Invalid email format");
@@ -66,9 +72,40 @@ public class SignUpTabFragment extends Fragment {
             return;
         }
 
+        signUpUser(email, password);
+    }
 
-        // Send OTP
-       // sendEmailOtp(email);
+    private void signUpUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            saveUserToRealtimeDB(user.getUid(), name, email);
+                        }
+                    } else {
+                        // Get the exception and show it
+                        Exception e = task.getException();
+                        if (e != null) {
+                            showToast("Sign up failed: " + e.getMessage());
+                            Log.e("SignUpError", "SignUp failed", e);
+                        }
+                    }
+                });
+    }
+
+
+    private void saveUserToRealtimeDB(String uid, String name, String email) {
+        UserModel user = new UserModel(name, email);
+
+        dbRef.child(uid).setValue(user)
+                .addOnSuccessListener(unused -> {
+                    showToast("Sign up successful");
+                    // TODO: Navigate to home screen
+                })
+                .addOnFailureListener(e -> {
+                    showToast("Failed to save user: " + e.getMessage());
+                });
     }
 
     private boolean isValidEmail(String email) {
@@ -76,75 +113,10 @@ public class SignUpTabFragment extends Fragment {
     }
 
     private boolean isComplexPassword(String password) {
-        // At least 8 chars, 1 upper, 1 number, 1 special
         return password.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$");
     }
 
     private void showToast(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-    }
-
-    private void sendEmailOtp(String email) {
-       /* new Thread(() -> {
-            try {
-                URL url = new URL("https://yourdomain.com/send_otp.php"); // Replace with your real PHP endpoint
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("POST");
-                conn.setDoOutput(true);
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-                String data = "email=" + URLEncoder.encode(email, "UTF-8");
-
-                OutputStream os = conn.getOutputStream();
-                os.write(data.getBytes());
-                os.flush();
-                os.close();
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-
-                JSONObject json = new JSONObject(result.toString());
-                String status = json.getString("status");
-
-                requireActivity().runOnUiThread(() -> {
-                    if (status.equals("success")) {
-                        showToast("OTP sent to email!");
-                        // Navigate to OTP verification screen (optional)
-                    } else {
-                        showToast("Failed to send OTP");
-                    }
-                });
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                requireActivity().runOnUiThread(() -> showToast("Error sending OTP"));
-            }
-        }).start();*/
-       /* FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-
-                        if (user != null) {
-                            user.sendEmailVerification()
-                                    .addOnCompleteListener(verifyTask -> {
-                                        if (verifyTask.isSuccessful()) {
-                                            Toast.makeText(getContext(), "Verification email sent", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(getContext(), "Failed to send verification", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
-                    } else {
-                        Toast.makeText(getContext(), "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });*/
-
     }
 }

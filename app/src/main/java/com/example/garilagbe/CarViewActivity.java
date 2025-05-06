@@ -3,6 +3,7 @@ package com.example.garilagbe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +50,7 @@ public class CarViewActivity extends AppCompatActivity {
 
         CarAdapter carAdapter = new CarAdapter();
         carRecyclerView = findViewById(R.id.car_recview);
-        carRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        carRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         carRecyclerView.setAdapter(carAdapter);
 
 

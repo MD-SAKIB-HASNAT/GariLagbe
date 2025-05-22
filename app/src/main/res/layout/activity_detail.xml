@@ -150,7 +150,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.333"
-                                android:background="@drawable/grey_bg"
+                                android:background="@drawable/itemshape"
                                 android:orientation="vertical">
 
                                 <ImageView
@@ -190,7 +190,7 @@
                                 android:layout_marginStart="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_weight="0.333"
-                                android:background="@drawable/grey_bg"
+                                android:background="@drawable/itemshape"
                                 android:orientation="vertical">
 
                                 <ImageView
@@ -228,7 +228,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="155dp"
                                 android:layout_weight="0.333"
-                                android:background="@drawable/grey_bg"
+                                android:background="@drawable/itemshape"
                                 android:orientation="vertical">
 
                                 <ImageView

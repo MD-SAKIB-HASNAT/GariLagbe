@@ -146,9 +146,13 @@ public class UploadItemActivity extends AppCompatActivity {
         dbRef.child(postId).setValue(postMap)
                 .addOnSuccessListener(unused -> {
                     Toast.makeText(this, "Post Uploaded", Toast.LENGTH_SHORT).show();
-
-                    // Go to CarViewActivity after successful upload
-                    Intent intent = new Intent(UploadItemActivity.this, CarViewActivity.class);
+                    Intent intent;
+                    if(type.equals("Car")) {
+                         intent = new Intent(UploadItemActivity.this, CarViewActivity.class);
+                    }
+                    else{
+                        intent = new Intent(UploadItemActivity.this, BikeViewActivity.class);
+                    }
                     startActivity(intent);
                     finish(); // Close current activity
                 })

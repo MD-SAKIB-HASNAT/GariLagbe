@@ -1,7 +1,9 @@
 package com.example.garilagbe;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,8 +17,10 @@ import java.util.List;
 public class CarViewActivity extends AppCompatActivity {
 
     RecyclerView carRecyclerView;
-    CarAdapter carAdapter;
-    List<Post> postList; // Dynamic list to store posts
+    VehicleAdapter vehicleAdapter;
+    List<Post> carPostList; // Dynamic list to store posts
+
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +29,11 @@ public class CarViewActivity extends AppCompatActivity {
 
         // Initialize RecyclerView
         carRecyclerView = findViewById(R.id.car_recview);
+        progressBar = findViewById(R.id.progressBarCar);
         carRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        postList = new ArrayList<>();
-        carAdapter = new CarAdapter(postList); // pass dynamic data
-        carRecyclerView.setAdapter(carAdapter);
+        carPostList = new ArrayList<>();
+        vehicleAdapter = new VehicleAdapter(carPostList); // pass dynamic data
+        carRecyclerView.setAdapter(vehicleAdapter);
 
         // Load posts from Firebase
         loadPostsFromFirebase();
@@ -41,12 +46,14 @@ public class CarViewActivity extends AppCompatActivity {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                postList.clear(); // clear old data
+                carPostList.clear(); // clear old data
                 for (DataSnapshot postSnap : snapshot.getChildren()) {
                     Post post = postSnap.getValue(Post.class);
-                    postList.add(post);
+                    if(post.getType().equals("Car")) carPostList.add(post);
                 }
-                carAdapter.notifyDataSetChanged(); // refresh RecyclerView
+                vehicleAdapter.notifyDataSetChanged(); // refresh RecyclerView
+                progressBar.setVisibility(View.INVISIBLE); // Hides it but keeps the space
+
             }
 
             @Override

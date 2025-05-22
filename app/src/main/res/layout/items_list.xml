@@ -6,10 +6,10 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginTop="16dp"
-    android:background="@drawable/grey_bg">
+    android:background="@drawable/itemshape">
 
     <ImageView
-        android:id="@+id/carImage"
+        android:id="@+id/vehicle_img"
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
@@ -19,32 +19,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/carTitle"
+        android:id="@+id/vehicle_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Car Name"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carImage" />
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_img" />
 
     <TextView
-        android:id="@+id/carPrice"
+        android:id="@+id/vehicle_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100000/="
-        android:textSize="16sp"
-        android:textColor="@color/black"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="@color/red"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carTitle"
-
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_title"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

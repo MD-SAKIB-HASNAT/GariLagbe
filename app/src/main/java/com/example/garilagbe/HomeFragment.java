@@ -32,11 +32,19 @@ public class HomeFragment extends Fragment {
         CardView btnSetting = view.findViewById(R.id.cardbtn_setting);
         CardView btnSupport = view.findViewById(R.id.cardbtn_support);
         CardView btnCar = view.findViewById(R.id.cardbtn_car);
+        CardView btnBike = view.findViewById(R.id.cardbtn_bike);
 
         btnCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(),CarViewActivity.class));
+            }
+        });
+
+        btnBike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),BikeViewActivity.class));
             }
         });
 

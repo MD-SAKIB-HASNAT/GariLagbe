@@ -15,12 +15,21 @@ import android.widget.LinearLayout;
 public class ProfileFragment extends Fragment {
 
     LinearLayout btnPost;
+    Button ownPost;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btnPost = view.findViewById(R.id.btn_post);
+        ownPost = view.findViewById(R.id.own_post);
+
+        ownPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), OwnPostActivity.class));
+            }
+        });
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

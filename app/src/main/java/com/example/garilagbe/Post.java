@@ -15,6 +15,15 @@ public class Post  implements Serializable {
     private String imageBase64;
     private String time;
     private String date;
+    private String postId;
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
 
     // Empty constructor needed for Firebase
     public Post() {}

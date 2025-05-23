@@ -1,5 +1,6 @@
 package com.example.garilagbe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.slider.RangeSlider;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
@@ -25,7 +27,8 @@ public class CarViewActivity extends AppCompatActivity {
     List<Post> carPostList; // Dynamic list to store posts
 
     ProgressBar progressBar;
-    ImageView btnBack;
+    ImageView btnBack,btnPost,btnHome;
+    TextView profileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +45,48 @@ public class CarViewActivity extends AppCompatActivity {
         vehicleAdapter = new VehicleAdapter(carPostList,CarViewActivity.this); // pass dynamic data
         carRecyclerView.setAdapter(vehicleAdapter);
         btnBack = findViewById(R.id.btn_back);
+
+        btnPost = findViewById(R.id.btn_post);
+        btnHome = findViewById(R.id.btn_home);
+
+        btnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(CarViewActivity.this, UploadItemActivity.class));
+            }
+        });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        //load name
+        profileName = findViewById(R.id.profile_name);
+
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUserId);
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String name = snapshot.child("name").getValue(String.class);
+                    profileName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Log or show error if needed
             }
         });
 

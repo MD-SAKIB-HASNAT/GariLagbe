@@ -225,9 +225,10 @@
 
                 <!-- Edit Profile Button -->
                 <Button
+                    android:id="@+id/own_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit Profile"
+                    android:text="View My All Posts"
                     android:textColor="#FFFFFF"
                     android:backgroundTint="#0077CC"
                     android:layout_marginTop="20dp"

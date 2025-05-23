@@ -16,12 +16,11 @@
             android:id="@+id/image_container"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#E0E0E0"
+            android:background="#DDDDDD"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginBottom="16dp"
             android:padding="8dp"
-            android:backgroundTint="#DDDDDD"
             android:clipToOutline="true"
             android:elevation="3dp">
 
@@ -32,24 +31,24 @@
                 android:scaleType="centerCrop" />
         </LinearLayout>
 
-
         <!-- Upload Button -->
         <Button
             android:id="@+id/btn_select_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Picture"
-            android:background="#CE2297"
+            android:backgroundTint="#CE2297"
             android:textColor="#FFFFFF"
             android:paddingHorizontal="24dp"
             android:paddingVertical="10dp"
             android:layout_marginBottom="20dp" />
-        <!-- Type Dropdown -->
+
+        <!-- Type Dropdown (Bike/Car) -->
         <Spinner
             android:id="@+id/spinner_type"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/edit_text_bg"
             android:spinnerMode="dropdown" />
 
@@ -74,6 +73,26 @@
             android:background="@drawable/edit_text_bg"
             android:layout_marginBottom="12dp" />
 
+        <!-- Fuel Type Dropdown -->
+        <Spinner
+            android:id="@+id/spinner_fuel_type"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edit_text_bg"
+            android:spinnerMode="dropdown" />
+
+        <!-- Total Mileage -->
+        <EditText
+            android:id="@+id/edit_mileage"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Total Mileage (in km)"
+            android:inputType="number"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_bg"
+            android:layout_marginBottom="12dp" />
+
         <!-- Price -->
         <EditText
             android:id="@+id/edit_price"
@@ -81,6 +100,17 @@
             android:layout_height="48dp"
             android:hint="Price"
             android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_bg"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Contact Number -->
+        <EditText
+            android:id="@+id/edit_contact"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Contact Number"
+            android:inputType="phone"
             android:padding="10dp"
             android:background="@drawable/edit_text_bg"
             android:layout_marginBottom="12dp" />
@@ -93,8 +123,7 @@
             android:hint="Location"
             android:padding="10dp"
             android:background="@drawable/edit_text_bg"
-            android:layout_marginBottom="12dp" />
-
+            android:layout_marginBottom="20dp" />
 
         <!-- Submit Button -->
         <Button
@@ -102,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Post Now"
-            android:background="#4CAF50"
+            android:backgroundTint="#4CAF50"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:elevation="4dp" />

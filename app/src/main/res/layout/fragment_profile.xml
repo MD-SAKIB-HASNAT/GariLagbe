@@ -77,7 +77,7 @@
             <!-- White card overlapping -->
             <LinearLayout
                 android:layout_width="360dp"
-                android:layout_height="wrap_content"
+                android:layout_height="450dp"
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -183,8 +183,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="6dp">
-                    <TextView android:text="Mobile:" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                    <TextView android:text="1234-123-9874" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
+                    <TextView
+                        android:text="Mobile:"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#555"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:text="1234-123-9874"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#555"
+                        android:textSize="16sp"/>
                 </LinearLayout>
 
                 <LinearLayout android:orientation="horizontal"

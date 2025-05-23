@@ -3,6 +3,7 @@ package com.example.garilagbe;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +29,7 @@ public class BikeViewActivity extends AppCompatActivity {
     List<Post> bikePostList; // Dynamic list to store posts
 
     ProgressBar progressBar;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,16 @@ public class BikeViewActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarBike);
         bikeRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         bikePostList = new ArrayList<>();
-        vehicleAdapter = new VehicleAdapter(bikePostList); // pass dynamic data
+        vehicleAdapter = new VehicleAdapter(bikePostList,BikeViewActivity.this); // pass dynamic data
         bikeRecyclerView.setAdapter(vehicleAdapter);
+
+         btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // Load posts from Firebase
         loadPostsFromFirebase();

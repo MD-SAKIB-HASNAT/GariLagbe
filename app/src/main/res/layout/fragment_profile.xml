@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5"
     tools:context=".ProfileFragment">
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,7 +56,7 @@
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Person Name"
+                    android:text="MH Rabbi"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -64,7 +70,7 @@
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="example@gmail.com"
+                    android:text="mhr221official@gmail.com"
                     android:textStyle="italic"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
@@ -185,6 +191,26 @@
                     android:layout_height="wrap_content"
                     android:paddingVertical="6dp">
                     <TextView
+                        android:text="Name:"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#555"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txt_fullName"
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#555"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp">
+                    <TextView
                         android:text="Mobile:"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -193,27 +219,21 @@
                         android:textSize="16sp"/>
 
                     <TextView
-                        android:text="1234-123-9874"
+                        android:id="@+id/txt_phone"
+                        android:text=" "
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#555"
                         android:textSize="16sp"/>
                 </LinearLayout>
 
-                <LinearLayout android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="6dp">
-                    <TextView android:text="Tell:" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                    <TextView android:text="1234-123-9874" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                </LinearLayout>
 
                 <LinearLayout android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="6dp">
                     <TextView android:text="Address:" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                    <TextView android:text="NY- Street 21-no 34" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
+                    <TextView android:id="@+id/txt_address" android:text=" " android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
                 </LinearLayout>
 
                 <LinearLayout android:orientation="horizontal"
@@ -221,10 +241,20 @@
                     android:layout_height="wrap_content"
                     android:paddingVertical="6dp">
                     <TextView android:text="PostalCode:" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                    <TextView android:text="9871234567" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
+                    <TextView android:id="@+id/txt_postal" android:text=" " android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
                 </LinearLayout>
 
                 <!-- Edit Profile Button -->
+                <Button
+                    android:id="@+id/btn_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Profile"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#0077CC"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:textAllCaps="false"/>
                 <Button
                     android:id="@+id/own_post"
                     android:layout_width="match_parent"

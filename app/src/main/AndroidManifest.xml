@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
@@ -16,9 +19,6 @@
         tools:targetApi="31">
         <activity
             android:name=".SellHistoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SellHistory"
             android:exported="false" />
         <activity
             android:name=".OwnPostActivity"
@@ -62,9 +62,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".home"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

@@ -14,10 +14,10 @@ import java.io.Serializable;
 public class DetailActivity extends AppCompatActivity {
 
     private TextView titleTxt, descriptionTxt, fuelType, milageRanTxt, contactBuyerTxt, priceTxt, locationTxt, dateTxt, timeTxt;
-    private ImageView vehicleImage;
+    private ImageView vehicleImage,imgFav,backBtn;
 
     Button seeMore;
-       ImageView backBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         vehicleImage = findViewById(R.id.v_img);
         seeMore = findViewById(R.id.see_more);
         backBtn = findViewById(R.id.btn_back);
+        imgFav = findViewById(R.id.img_fav);
         locationTxt = findViewById(R.id.location);
         timeTxt = findViewById(R.id.time);
         dateTxt = findViewById(R.id.date);
@@ -42,6 +43,12 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        imgFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgFav.setImageResource(R.drawable.favoriteselect);
             }
         });
 

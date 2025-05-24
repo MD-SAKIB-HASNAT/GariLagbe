@@ -15,6 +15,12 @@
         android:theme="@style/Theme.GariLagbe"
         tools:targetApi="31">
         <activity
+            android:name=".SellHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SellHistory"
+            android:exported="false" />
+        <activity
             android:name=".OwnPostActivity"
             android:exported="false" />
         <activity

@@ -184,6 +184,7 @@ public class UploadItemActivity extends AppCompatActivity {
         String location = editLocation.getText().toString();
         String mileage = editMileage.getText().toString();
         String contact = editContact.getText().toString();
+        String status = "Available";
         String type = spinnerType.getSelectedItem().toString();
         String fuelType = spinnerFuelType.getSelectedItem().toString();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -204,6 +205,7 @@ public class UploadItemActivity extends AppCompatActivity {
         postMap.put("location", location);
         postMap.put("date", currentDate);
         postMap.put("time", currentTime);
+        postMap.put("status", status);
 
         if (postToEdit != null) {
             dbRef.child(postToEdit.getPostId()).setValue(postMap)

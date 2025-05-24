@@ -16,6 +16,15 @@ public class Post  implements Serializable {
     private String time;
     private String date;
     private String postId;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getPostId() {
         return postId;

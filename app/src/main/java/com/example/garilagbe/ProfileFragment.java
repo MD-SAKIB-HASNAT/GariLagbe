@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 public class ProfileFragment extends Fragment {
 
-    LinearLayout btnPost;
+    LinearLayout btnPost,sellHistory;
     Button ownPost;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,11 +23,18 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btnPost = view.findViewById(R.id.btn_post);
         ownPost = view.findViewById(R.id.own_post);
+        sellHistory = view.findViewById(R.id.sellHistory);
 
         ownPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), OwnPostActivity.class));
+            }
+        });
+        sellHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SellHistoryActivity.class));
             }
         });
         btnPost.setOnClickListener(new View.OnClickListener() {

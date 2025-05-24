@@ -111,7 +111,7 @@ public class BikeViewActivity extends AppCompatActivity {
                 bikePostList.clear(); // clear old data
                 for (DataSnapshot postSnap : snapshot.getChildren()) {
                     Post post = postSnap.getValue(Post.class);
-                    if(post.getType().equals("Bike")) bikePostList.add(post);
+                    if(post.getType().equals("Bike") && post.getStatus().equals("Available")) bikePostList.add(post);
                 }
                 vehicleAdapter.notifyDataSetChanged(); // refresh RecyclerView
                 progressBar.setVisibility(View.INVISIBLE); // Hides it but keeps the space

@@ -95,6 +95,7 @@
 
                     <!-- Payment -->
                     <LinearLayout
+                        android:id="@+id/sellHistory"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

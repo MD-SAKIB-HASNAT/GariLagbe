@@ -150,7 +150,7 @@ public class CarViewActivity extends AppCompatActivity {
                 carPostList.clear(); // clear old data
                 for (DataSnapshot postSnap : snapshot.getChildren()) {
                     Post post = postSnap.getValue(Post.class);
-                    if(post.getType().equals("Car")) carPostList.add(post);
+                    if(post.getType().equals("Car") && post.getStatus().equals("Available")) carPostList.add(post);
                 }
                 vehicleAdapter.notifyDataSetChanged(); // refresh RecyclerView
                 progressBar.setVisibility(View.INVISIBLE); // Hides it but keeps the space

@@ -44,7 +44,7 @@ public class OwnPostActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(OwnPostActivity.this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(OwnPostActivity.this, 1));
 
         adapter = new MyPostsAdapter(postList,OwnPostActivity.this);
         recyclerView.setAdapter(adapter);
@@ -71,7 +71,7 @@ public class OwnPostActivity extends AppCompatActivity {
 
                 for (DataSnapshot postSnap : snapshot.getChildren()) {
                     Post post = postSnap.getValue(Post.class);
-                    if (post != null && uid.equals(post.getUserId())) {
+                    if (post != null && uid.equals(post.getUserId()) && post.getStatus().equals("Available")) {
                         post.setPostId(postSnap.getKey());
                         postList.add(post);
                     }

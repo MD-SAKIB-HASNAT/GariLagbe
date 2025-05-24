@@ -10,19 +10,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.garilagbe.Post;
 import com.example.garilagbe.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.ViewHolder> {
 
@@ -37,7 +47,7 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView postImage;
         TextView postTitle, postPrice;
-        Button updateButton, deleteButton;
+        Button updateButton, deleteButton,soldButton;
 
         public ViewHolder(View view) {
             super(view);
@@ -46,6 +56,7 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.ViewHold
             postPrice = view.findViewById(R.id.postPrice);
             updateButton = view.findViewById(R.id.updateButton);
             deleteButton = view.findViewById(R.id.deleteButton);
+            soldButton = view.findViewById(R.id.soldButton);
         }
     }
 
@@ -96,6 +107,77 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.ViewHold
                     .setNegativeButton("No", null)
                     .show();
         });
+
+        // Sold feature
+        holder.soldButton.setOnClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Sold Post")
+                    .setMessage("Are you sure you have sold this post?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+
+                        // Inflate custom dialog
+                        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_buyer_info, null);
+                        EditText inputName = dialogView.findViewById(R.id.inputBuyerName);
+                        EditText inputPhone = dialogView.findViewById(R.id.inputBuyerPhone);
+                        EditText inputAddress = dialogView.findViewById(R.id.inputBuyerAddress);
+
+                        new AlertDialog.Builder(context)
+                                .setTitle("Enter Buyer Details")
+                                .setView(dialogView)
+                                .setPositiveButton("Submit", (d, w) -> {
+                                    String name = inputName.getText().toString().trim();
+                                    String phone = inputPhone.getText().toString().trim();
+                                    String address = inputAddress.getText().toString().trim();
+
+                                    if (post.getPostId() == null || post.getUserId() == null) {
+                                        Toast.makeText(context, "Post or User ID is null", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+
+                                    // Step 1: Update post status
+                                    FirebaseDatabase.getInstance().getReference("posts")
+                                            .child(post.getPostId())
+                                            .child("status")
+                                            .setValue("sold")
+                                            .addOnSuccessListener(aVoid -> {
+
+                                                // Step 2: Get date and time
+                                                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                                                String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
+
+                                                // Step 3: Save to sold table
+                                                HashMap<String, Object> soldData = new HashMap<>();
+                                                soldData.put("postId", post.getPostId());
+                                                soldData.put("buyerName", name);
+                                                soldData.put("buyerPhone", phone);
+                                                soldData.put("buyerAddress", address);
+                                                soldData.put("date", currentDate);
+                                                soldData.put("time", currentTime);
+
+                                                FirebaseDatabase.getInstance().getReference("sold")
+                                                        .child(post.getUserId())
+                                                        .child(post.getPostId())
+                                                        .setValue(soldData)
+                                                        .addOnSuccessListener(aVoid1 -> {
+                                                            Toast.makeText(context, "Post marked as sold", Toast.LENGTH_SHORT).show();
+                                                        }).addOnFailureListener(e -> {
+                                                            Toast.makeText(context, "Failed to save buyer info: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        });
+
+                                            }).addOnFailureListener(e -> {
+                                                Toast.makeText(context, "Failed to update status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+
+                                })
+                                .setNegativeButton("Cancel", null)
+                                .show();
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        });
+
+
 
 
 

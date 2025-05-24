@@ -8,23 +8,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import java.io.Serializable;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class DetailActivity extends AppCompatActivity {
 
+    // UI components
     private TextView titleTxt, descriptionTxt, fuelType, milageRanTxt, contactBuyerTxt, priceTxt, locationTxt, dateTxt, timeTxt;
-    private ImageView vehicleImage,imgFav,backBtn;
+    private TextView ratingCountTxt; // TextView to show favorite count
+    private ImageView vehicleImage, imgFav, backBtn;
+    private Button seeMore;
 
-    Button seeMore;
+    // Firebase references
+    private DatabaseReference favoriteRef; // Ref for current user's favorites
+    private DatabaseReference globalFavoriteRef; // Ref for global favorites
+    private String userId;
 
+    private Post post;
+    private boolean isFavorite = false; // To track if current user favorited this post
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        // Bind views
+        // Initialize views
         titleTxt = findViewById(R.id.titleTxt);
         descriptionTxt = findViewById(R.id.descriptionTxt);
         fuelType = findViewById(R.id.fuel_type);
@@ -38,51 +54,146 @@ public class DetailActivity extends AppCompatActivity {
         locationTxt = findViewById(R.id.location);
         timeTxt = findViewById(R.id.time);
         dateTxt = findViewById(R.id.date);
+        ratingCountTxt = findViewById(R.id.rating_count); // Bind rating count TextView
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        imgFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imgFav.setImageResource(R.drawable.favoriteselect);
-            }
-        });
+        // Get current user
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            favoriteRef = FirebaseDatabase.getInstance().getReference("favorite").child(userId);
+            globalFavoriteRef = FirebaseDatabase.getInstance().getReference("favorite"); // All users' favorites
+        } else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+            finish(); // Exit activity
+            return;
+        }
 
-        seeMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        // Back button click
+        backBtn.setOnClickListener(view -> finish());
+
+        // "See More" button click
+        seeMore.setOnClickListener(view -> finish());
 
         // Get Post object from Intent
-        Post post = (Post) getIntent().getSerializableExtra("post");
+        post = (Post) getIntent().getSerializableExtra("post");
+        if (post == null) {
+            Toast.makeText(this, "Post data not available", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
-        if (post != null) {
-            titleTxt.setText(post.getTitle());
-            descriptionTxt.setText(post.getDescription());
-            fuelType.setText(post.getFuelType());
-            milageRanTxt.setText(post.getMileage() + " km");
-            contactBuyerTxt.setText(post.getContact());
-            priceTxt.setText(post.getPrice() + "/=");
-            locationTxt.setText("Location : "+post.getLocation());
-            timeTxt.setText("Post Time : "+post.getTime());
-            dateTxt.setText("Post Date : "+post.getDate());
+        // Validate post ID
+        if (post.getPostId() == null || post.getPostId().isEmpty()) {
+            Toast.makeText(this, "Invalid post ID", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
-            // Convert base64 image string to Bitmap
-            if (post.getImageBase64() != null && !post.getImageBase64().isEmpty()) {
-                try {
-                    byte[] imageBytes = Base64.decode(post.getImageBase64(), Base64.DEFAULT);
-                    Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                    vehicleImage.setImageBitmap(decodedImage);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        // Populate data into UI
+        titleTxt.setText(post.getTitle());
+        descriptionTxt.setText(post.getDescription());
+        fuelType.setText(post.getFuelType());
+        milageRanTxt.setText(post.getMileage() + " km");
+        contactBuyerTxt.setText(post.getContact());
+        priceTxt.setText(post.getPrice() + "/=");
+        locationTxt.setText("Location : " + post.getLocation());
+        timeTxt.setText("Post Time : " + post.getTime());
+        dateTxt.setText("Post Date : " + post.getDate());
+
+        // Decode and show image from Base64
+        if (post.getImageBase64() != null && !post.getImageBase64().isEmpty()) {
+            try {
+                byte[] imageBytes = Base64.decode(post.getImageBase64(), Base64.DEFAULT);
+                Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                vehicleImage.setImageBitmap(decodedImage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Check if current user has favorited this post
+        checkIfFavorite();
+
+        // Load total favorite count for this post
+        loadFavoriteCount();
+
+        // Favorite button click
+        imgFav.setOnClickListener(view -> toggleFavorite());
+    }
+
+    /**
+     * Check if the current user has favorited this post
+     */
+    private void checkIfFavorite() {
+        favoriteRef.child(post.getPostId()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    isFavorite = true;
+                    imgFav.setImageResource(R.drawable.favoriteselect);
+                } else {
+                    isFavorite = false;
+                    imgFav.setImageResource(R.drawable.favorite);
                 }
             }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(DetailActivity.this, "Error checking favorites", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * Load total favorite count for this post from "favorite" node
+     */
+    private void loadFavoriteCount() {
+        globalFavoriteRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                int count = 0;
+                for (DataSnapshot userSnap : snapshot.getChildren()) {
+                    if (userSnap.hasChild(post.getPostId())) {
+                        count++;
+                    }
+                }
+                ratingCountTxt.setText(String.valueOf(count)); // Update the count in UI
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(DetailActivity.this, "Error loading favorite count", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * Toggle favorite status when user clicks the favorite icon
+     */
+    private void toggleFavorite() {
+        if (isFavorite) {
+            // Remove from favorites
+            favoriteRef.child(post.getPostId()).removeValue().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    isFavorite = false;
+                    imgFav.setImageResource(R.drawable.favorite);
+                    Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+                    loadFavoriteCount(); // Refresh count
+                } else {
+                    Toast.makeText(this, "Failed to remove from favorites", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            // Add to favorites
+            favoriteRef.child(post.getPostId()).setValue(true).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    isFavorite = true;
+                    imgFav.setImageResource(R.drawable.favoriteselect);
+                    Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
+                    loadFavoriteCount(); // Refresh count
+                } else {
+                    Toast.makeText(this, "Failed to add to favorites", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

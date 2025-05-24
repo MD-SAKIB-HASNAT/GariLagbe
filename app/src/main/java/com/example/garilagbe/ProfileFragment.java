@@ -32,7 +32,6 @@ public class ProfileFragment extends Fragment {
 
     LinearLayout btnPost,sellHistory;
     Button ownPost;
-    Button btnProfile;
     private ImageView profileImageView;
     private TextView nameView, phoneView, addressView, postalView, userNameView, emailView;
 
@@ -44,7 +43,6 @@ public class ProfileFragment extends Fragment {
 
         btnPost = view.findViewById(R.id.btn_post);
         ownPost = view.findViewById(R.id.own_post);
-        btnProfile = view.findViewById(R.id.btn_profile);
 
         profileImageView = view.findViewById(R.id.profile_pic);
         nameView = view.findViewById(R.id.txt_fullName);
@@ -77,18 +75,6 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getActivity(), UploadItemActivity.class));
             }
         });
-
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Navigate to SettingsFragment
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new SettingsFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-
         return view;
     }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:elevation="4dp"
     android:background="@drawable/card_bg">
@@ -26,15 +26,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:valueFrom="0"
-            android:valueTo="200000"
-            android:stepSize="1000"
-            />
+            android:valueTo="20000000"
+            android:stepSize="100000"
+            app:values="@array/default_price_range" />
+
 
         <TextView
             android:id="@+id/priceRangeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0 - 200000 Tk"
+            android:text="0 - 20000000 Tk"
             android:textAlignment="center"
             android:textStyle="italic"/>
 

@@ -14,6 +14,7 @@
         />
 
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -178,6 +179,7 @@
                         android:textSize="16sp"/>
 
                     <TextView
+                        android:id="@+id/passChange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Change"
@@ -245,16 +247,7 @@
                 </LinearLayout>
 
                 <!-- Edit Profile Button -->
-                <Button
-                    android:id="@+id/btn_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Edit Profile"
-                    android:textColor="#FFFFFF"
-                    android:backgroundTint="#0077CC"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:textAllCaps="false"/>
+
                 <Button
                     android:id="@+id/own_post"
                     android:layout_width="match_parent"
@@ -262,7 +255,7 @@
                     android:text="View My All Posts"
                     android:textColor="#FFFFFF"
                     android:backgroundTint="#0077CC"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginBottom="10dp"
                     android:textAllCaps="false"/>
             </LinearLayout>

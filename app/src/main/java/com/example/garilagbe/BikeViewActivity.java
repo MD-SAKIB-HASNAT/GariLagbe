@@ -32,7 +32,7 @@ public class BikeViewActivity extends AppCompatActivity {
     List<Post> bikePostList; // Dynamic list to store posts
 
     ProgressBar progressBar;
-    ImageView btnBack,btnPost,btnHome,btnFav;
+    ImageView btnBack,btnPost,btnHome,btnFav,btnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,12 @@ public class BikeViewActivity extends AppCompatActivity {
          btnPost = findViewById(R.id.btn_post);
          btnHome = findViewById(R.id.btn_home);
         btnFav = findViewById(R.id.btn_fav);
+        btnProfile= findViewById(R.id.btnProfile);
+        btnProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(BikeViewActivity.this, MainHome.class);
+            intent.putExtra("showFragment", "profile");
+            startActivity(intent);
+        });
 
 
         btnFav.setOnClickListener(new View.OnClickListener() {

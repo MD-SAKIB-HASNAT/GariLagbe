@@ -1,5 +1,6 @@
 package com.example.garilagbe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,6 +28,12 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CarBikeV
         this.postList = postList;
         this.mContext = mContext;
     }
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFilteredList(List<Post> filteredList) {
+        this.postList = filteredList;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

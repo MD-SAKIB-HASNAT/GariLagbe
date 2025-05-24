@@ -268,10 +268,9 @@
                     android:gravity="center"
                     android:orientation="vertical">
                     <ImageView
-
+                        android:id="@+id/btn_fav"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-
                         android:layout_gravity="center"
                         app:srcCompat="@drawable/btn_2"  />
                 </LinearLayout>

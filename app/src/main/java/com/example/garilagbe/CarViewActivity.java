@@ -27,7 +27,7 @@ public class CarViewActivity extends AppCompatActivity {
     List<Post> carPostList; // Dynamic list to store posts
 
     ProgressBar progressBar;
-    ImageView btnBack,btnPost,btnHome;
+    ImageView btnBack,btnPost,btnHome,btnFav;
     TextView profileName;
 
     @Override
@@ -48,12 +48,18 @@ public class CarViewActivity extends AppCompatActivity {
 
         btnPost = findViewById(R.id.btn_post);
         btnHome = findViewById(R.id.btn_home);
+        btnFav = findViewById(R.id.btn_fav);
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 startActivity(new Intent(CarViewActivity.this, UploadItemActivity.class));
+            }
+        });
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CarViewActivity.this, FavoritePostActivity.class));
             }
         });
         btnBack.setOnClickListener(new View.OnClickListener() {

@@ -3,20 +3,22 @@
     android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#F2F2F2"
+    android:layout_margin="5dp"
+    android:background="@drawable/edittext_bkg"
     android:layout_marginBottom="8dp">
 
     <TextView
         android:id="@+id/txtPostTitle"
         android:text="Post Title"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/txtBuyerName"
         android:text="Buyer: "
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -29,18 +31,21 @@
     <TextView
         android:id="@+id/txtBuyerPhone"
         android:text="Phone: "
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/txtDate"
         android:text="Date: "
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/txtTime"
         android:text="Time: "
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

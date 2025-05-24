@@ -32,7 +32,7 @@ public class BikeViewActivity extends AppCompatActivity {
     List<Post> bikePostList; // Dynamic list to store posts
 
     ProgressBar progressBar;
-    ImageView btnBack,btnPost,btnHome;
+    ImageView btnBack,btnPost,btnHome,btnFav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,15 @@ public class BikeViewActivity extends AppCompatActivity {
          btnBack = findViewById(R.id.btn_back);
          btnPost = findViewById(R.id.btn_post);
          btnHome = findViewById(R.id.btn_home);
+        btnFav = findViewById(R.id.btn_fav);
+
+
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BikeViewActivity.this, FavoritePostActivity.class));
+            }
+        });
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +78,6 @@ public class BikeViewActivity extends AppCompatActivity {
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 startActivity(new Intent(BikeViewActivity.this, UploadItemActivity.class));
             }
         });
@@ -111,7 +119,10 @@ public class BikeViewActivity extends AppCompatActivity {
                 bikePostList.clear(); // clear old data
                 for (DataSnapshot postSnap : snapshot.getChildren()) {
                     Post post = postSnap.getValue(Post.class);
-                    if(post.getType().equals("Bike") && post.getStatus().equals("Available")) bikePostList.add(post);
+                    if(post.getType().equals("Bike") && post.getStatus().equals("Available")){
+                        post.setPostId(postSnap.getKey()); // ✅ Set postId from Firebase key
+                        bikePostList.add(post);
+                    }
                 }
                 vehicleAdapter.notifyDataSetChanged(); // refresh RecyclerView
                 progressBar.setVisibility(View.INVISIBLE); // Hides it but keeps the space

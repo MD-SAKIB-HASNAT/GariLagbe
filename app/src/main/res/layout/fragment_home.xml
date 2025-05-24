@@ -189,6 +189,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardbtn_fav"
             android:layout_width="75dp"
             android:layout_height="85dp"
             android:layout_row="1"
@@ -214,6 +215,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardbtn_history"
             android:layout_width="75dp"
             android:layout_height="85dp"
             android:layout_row="1"

@@ -41,6 +41,7 @@ public class UploadItemActivity extends AppCompatActivity {
     // Firebase
     FirebaseDatabase database;
     DatabaseReference dbRef;
+    ProgressBar upProgressbar;
 
     // For editing existing post
     Post postToEdit;
@@ -63,6 +64,9 @@ public class UploadItemActivity extends AppCompatActivity {
         spinnerType = findViewById(R.id.spinner_type);
         spinnerFuelType = findViewById(R.id.spinner_fuel_type);
         btnBack = findViewById(R.id.btn_back);
+        upProgressbar = findViewById(R.id.up_progressbar);
+
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +182,7 @@ public class UploadItemActivity extends AppCompatActivity {
     }
 
     private void savePostToDB(String imageBase64) {
+        upProgressbar.setVisibility(View.VISIBLE);
         String title = editTitle.getText().toString();
         String description = editDescription.getText().toString();
         String price = editPrice.getText().toString();
@@ -211,6 +216,7 @@ public class UploadItemActivity extends AppCompatActivity {
             dbRef.child(postToEdit.getPostId()).setValue(postMap)
                     .addOnSuccessListener(unused -> {
                         Toast.makeText(this, "Post Updated", Toast.LENGTH_SHORT).show();
+                        upProgressbar.setVisibility(View.GONE);
                         goToTypeView(type);
                     })
                     .addOnFailureListener(e ->
@@ -220,6 +226,7 @@ public class UploadItemActivity extends AppCompatActivity {
             dbRef.child(postId).setValue(postMap)
                     .addOnSuccessListener(unused -> {
                         Toast.makeText(this, "Post Uploaded", Toast.LENGTH_SHORT).show();
+                        upProgressbar.setVisibility(View.GONE);
                         goToTypeView(type);
                     })
                     .addOnFailureListener(e ->

@@ -68,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    public void switchToLoginTab() {
+        viewPager2.setCurrentItem(0); // 0 is login tab index; adjust if needed
+    }
 
 
 

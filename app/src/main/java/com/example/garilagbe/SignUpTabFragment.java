@@ -101,12 +101,23 @@ public class SignUpTabFragment extends Fragment {
         dbRef.child(uid).setValue(user)
                 .addOnSuccessListener(unused -> {
                     showToast("Sign up successful");
-                    // TODO: Navigate to home screen
+
+                    // Clear inputs
+                    nameInput.setText("");
+                    emailInput.setText("");
+                    passwordInput.setText("");
+                    confirmPasswordInput.setText("");
+
+                    // Switch to Login tab
+                    if (getActivity() instanceof MainActivity) {
+                        ((MainActivity) getActivity()).switchToLoginTab();
+                    }
                 })
                 .addOnFailureListener(e -> {
                     showToast("Failed to save user: " + e.getMessage());
                 });
     }
+
 
     private boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();

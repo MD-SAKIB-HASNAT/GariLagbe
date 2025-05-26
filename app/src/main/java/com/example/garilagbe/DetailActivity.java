@@ -1,5 +1,6 @@
 package com.example.garilagbe;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -118,6 +119,12 @@ public class DetailActivity extends AppCompatActivity {
 
         // Favorite button click
         imgFav.setOnClickListener(view -> toggleFavorite());
+        vehicleImage.setOnClickListener(view -> {
+            Intent intent = new Intent(DetailActivity.this, FullScreenImageActivity.class);
+            intent.putExtra("image_base64", post.getImageBase64());
+            startActivity(intent);
+        });
+
     }
 
     /**

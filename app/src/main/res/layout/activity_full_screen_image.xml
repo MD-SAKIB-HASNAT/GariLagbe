@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+  <LinearLayout
+      android:id="@+id/back_setting"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center_vertical"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="20dp"
+      android:paddingVertical="12dp">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:src="@drawable/leftaew"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="16dp" />
+
+    <TextView
+        android:text="Back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+  </LinearLayout>
+  <!-- Fullscreen ImageView -->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+     >
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:background="@color/grey"
+        android:id="@+id/fullscreenImageView"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="matrix"
+        />
+
+
+  </LinearLayout>
+
+</LinearLayout>
